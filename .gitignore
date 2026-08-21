@@ -4,5 +4,7 @@ vendor/
 .DS_Store
 dist/
 build/
+backend/config/database.php
 backend/config/database_local.php
+fix_password.php
 *.log
