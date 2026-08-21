@@ -53,8 +53,8 @@ export default function Orders() {
         <button className={`btn ${filter === 'CANCELLED' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setFilter('CANCELLED')}>Cancelled</button>
       </div>
 
-      <div className="glass-panel" style={{ overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <div className="glass-panel" style={{ overflowX: 'auto' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px' }}>
           <thead>
             <tr style={{ background: 'rgba(255,255,255,0.05)', textAlign: 'left' }}>
               <th style={{ padding: '1rem' }}>ID</th>

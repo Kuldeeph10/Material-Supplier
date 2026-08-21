@@ -25,8 +25,8 @@ export default function Customers() {
     <div>
       <h1 className="mb-4">Customers Directory</h1>
       
-      <div className="glass-panel" style={{ overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <div className="glass-panel" style={{ overflowX: 'auto' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
           <thead>
             <tr style={{ background: 'rgba(255,255,255,0.05)', textAlign: 'left' }}>
               <th style={{ padding: '1rem' }}>ID</th>
