@@ -1,0 +1,37 @@
+CREATE TABLE `users` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL UNIQUE,
+  `phone` VARCHAR(20) NOT NULL UNIQUE,
+  `password_hash` VARCHAR(255) NOT NULL,
+  `role` VARCHAR(20) DEFAULT 'manager',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `customers` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `phone` VARCHAR(20) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `orders` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `customer_id` INT NOT NULL,
+  `requirement` VARCHAR(255) NOT NULL,
+  `quantity` DECIMAL(10,2) DEFAULT NULL,
+  `unit` VARCHAR(50) DEFAULT NULL,
+  `location` VARCHAR(255) DEFAULT NULL,
+  `notes` TEXT,
+  `status` ENUM('PENDING', 'COMPLETED', 'CANCELLED') DEFAULT 'PENDING',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `completed_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`customer_id`) REFERENCES `customers`(`id`) ON DELETE CASCADE
+);
+
+-- Insert a default admin user (password is 'password123')
+INSERT INTO `users` (`name`, `email`, `phone`, `password_hash`, `role`) 
+VALUES ('Admin', 'admin@example.com', '1234567890', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
